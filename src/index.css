@@ -1,0 +1,171 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-charcoal: #141210;
+    --text-cream: #F1E9DA;
+    --accent-terracotta: #D4552B;
+    --accent-olive: #6B6B3A;
+    --accent-sand: #D9C9A8;
+  }
+
+  * {
+    border-radius: 0 !important;
+    box-sizing: border-box;
+  }
+
+  html {
+    background-color: #141210;
+    color: #F1E9DA;
+    font-family: 'Instrument Sans', sans-serif;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: #141210;
+    color: #F1E9DA;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Lenis smooth scrolling support */
+  html.lenis, html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  .lenis.lenis-scrolling iframe {
+    pointer-events: none;
+  }
+
+  /* Accessibility: Focus states with sharp terracotta outline */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    outline: 2px solid #D4552B;
+    outline-offset: 2px;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #141210;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #2C2723;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #D4552B;
+  }
+}
+
+@layer utilities {
+  /* Cinematic unified film grade filter */
+  .film-grade {
+    filter: contrast(1.08) saturate(0.85) sepia(0.08) brightness(0.96);
+    transition: filter 0.4s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .film-grade-hover:hover .film-grade,
+  .film-grade:hover {
+    filter: contrast(1.12) saturate(0.95) sepia(0.04) brightness(1.02);
+  }
+
+  /* Display typography with heavy condensed Archivo */
+  .font-display-heavy {
+    font-family: 'Archivo', sans-serif;
+    font-stretch: 75%;
+    font-weight: 800;
+    text-transform: uppercase;
+    line-height: 0.86;
+    letter-spacing: -0.04em;
+  }
+
+  .font-display-mega {
+    font-family: 'Archivo', sans-serif;
+    font-stretch: 70%;
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 0.82;
+    letter-spacing: -0.05em;
+  }
+
+  /* Mono metadata style */
+  .mono-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-weight: 500;
+  }
+
+  /* Pure CSS compositor accelerated letter reveal */
+  @keyframes letterReveal {
+    0% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .animate-letter-reveal {
+    display: inline-block;
+    animation: letterReveal 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  /* Underline only form inputs */
+  .input-underline {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #2C2723;
+    color: #F1E9DA;
+    padding: 0.85rem 0;
+    width: 100%;
+    outline: none;
+    transition: border-color 0.25s ease, color 0.25s ease;
+  }
+
+  .input-underline:focus {
+    border-bottom-color: #D4552B;
+    outline: none;
+  }
+
+  /* Hide default cursor on desktop when custom cursor active */
+  @media (pointer: fine) {
+    .custom-cursor-active {
+      cursor: none;
+    }
+    .custom-cursor-active a,
+    .custom-cursor-active button,
+    .custom-cursor-active [role="button"] {
+      cursor: none;
+    }
+  }
+}
